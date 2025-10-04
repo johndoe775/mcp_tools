@@ -1,5 +1,5 @@
 env:
-	uv venv
+	pip install uv && uv venv
 
 install:
 	uv sync
