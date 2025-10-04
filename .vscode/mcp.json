@@ -1,0 +1,10 @@
+{
+  "servers": {
+    "my-tools": {
+      "type": "stdio",
+      "command": "uv",
+	  "args": ["run", "main.py"]
+	
+    }
+  }
+}
