@@ -49,20 +49,26 @@ def get_stock_diffs(ticker: str):
     result_df["Date"] = result_df["Date"].dt.date
 
     # Percentage differences
-    result_df["dod %"] = result_df["Close"].diff(-1) / result_df["Close"].shift(-1) * 100
-    result_df["wow %"] = result_df["Close"].diff(-2) / result_df["Close"].shift(-2) * 100
-    result_df["mom %"] = result_df["Close"].diff(-3) / result_df["Close"].shift(-3) * 100
+    result_df["dod %"] = (
+        result_df["Close"].diff(-1) / result_df["Close"].shift(-1) * 100
+    )
+    result_df["wow %"] = (
+        result_df["Close"].diff(-2) / result_df["Close"].shift(-2) * 100
+    )
+    result_df["mom %"] = (
+        result_df["Close"].diff(-3) / result_df["Close"].shift(-3) * 100
+    )
 
     # Remove rows where any diff is NaN (the earliest rows)
     result_df.dropna(inplace=True)
 
     # Re‑order columns for readability
-    result_df= result_df[["Date", "Close", "dod %", "wow %", "mom %"]]
+    result_df = result_df[["Date", "Close", "dod %", "wow %", "mom %"]]
     result_df["Date"] = result_df["Date"].astype(str)
-    columns=result_df.columns
-    values=result_df.values[0]
-    result=dict()
-    for i,j in zip(columns, values):
-        result[i]=j
+    columns = result_df.columns
+    values = result_df.values[0]
+    result = dict()
+    for i, j in zip(columns, values):
+        result[i] = j
 
     return result

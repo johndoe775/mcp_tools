@@ -10,7 +10,9 @@ mcp = FastMCP("Price MCP Server")
 
 
 @mcp.tool
-def price_get(ticker: str, dod: Optional[int] = 1, wow: Optional[int] = 5, mom: Optional[int] = 22):
+def price_get(
+    ticker: str, dod: Optional[int] = 1, wow: Optional[int] = 5, mom: Optional[int] = 22
+):
     """
     MCP tool wrapper for calculate_price_changes.
 
