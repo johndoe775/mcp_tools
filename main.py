@@ -1,7 +1,7 @@
 from fastmcp import FastMCP
 from typing import Optional
 import logging
-from utils.finance_tool import calculate_price_changes
+from utils.finance_tool import get_stock_diffs
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("mcp_price_tool")
@@ -10,9 +10,7 @@ mcp = FastMCP("Price MCP Server")
 
 
 @mcp.tool
-def price_get(
-    ticker: str, dod: Optional[int] = 1, wow: Optional[int] = 5, mom: Optional[int] = 22
-):
+def price_get(ticker: str):
     """
     MCP tool wrapper for calculate_price_changes.
 
@@ -28,7 +26,7 @@ def price_get(
     try:
         if not ticker or not isinstance(ticker, str):
             return {"error": "ticker (str) is required"}
-        result = calculate_price_changes(ticker, int(dod), int(wow), int(mom))
+        result = get_stock_diffs(ticker)
     except Exception as e:
         logger.exception("Error in price_get")
         return {"error": str(e)}
