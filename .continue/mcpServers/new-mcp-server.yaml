@@ -1,10 +1,12 @@
-name: New MCP server
+name: price_tracker
 version: 0.0.1
 schema: v1
 mcpServers:
   - name: Price MCP Server
+    type: stdio
     command: uv
     args:
-    - run
-    - main.py
+      - run
+      - main.py
+    cwd: /workspaces/mcp_tools
     env: {}
