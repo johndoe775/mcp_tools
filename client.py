@@ -8,8 +8,7 @@ async def main() -> None:
 
     # use the client's async context manager so it connects properly
     async with Client(server_script) as client:
-        tools = await client.list_tools()
-        print(f"Available tools: {tools}")
+        print([i.name for i in await client.list_tools()])
 
         ticker = "AAPL"
         try:
