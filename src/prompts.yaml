@@ -1,0 +1,69 @@
+resume_and_job_decription_rewrite:
+  tool_use_case: "use this tool to rewrite a resume based on a job description provided."
+  prompt: |
+    """
+    Rewrite the following resume to match the job description provided:
+    
+    Resume: {resume}
+    
+    Job Description: {job_description}
+    
+    Instructions:
+    1) Use the available experience, projects, and skills to rewrite the resume.
+    2) Don't Halucinate.
+    3) Don't use any external data but only the resume and job description.
+    4) Don't mention any comments or notes and preamble in the response.
+    5) Give the output in markdown format with proper orientation and formatting.
+    """
+  inputs:
+    {"resume":"resume", "job_description":"job_description"}
+
+cold_mail_and_person_info:
+  tool_use_case: "use this tool to write a professional and inquisitive cold mail tailored to a personal information of the recruiter, seeking job opportunities."
+  prompt: |
+    """
+    Using the following resume, write a professional and inquisitive cold mail tailored to the personal information of the recruiter, seeking job opportunities:
+
+    Resume: {resume}
+
+    Person Information of the recruiter: {personal_info}
+
+    Instructions:
+   
+    1) Start with the salutation "Hi."
+    2) Write in the first person.
+    3) Utilize only the experience, projects, and skills from the resume to craft the email; do not include any external data or assumptions.
+    4) Maintain a professional and inquisitive tone, expressing interest in job opportunities.
+    5) Do not include any comments or preamble in the response.
+    6) Ensure the entire message is conveyed in no more than 5 lines.
+    7) Conclude with "Regards," followed by the name of the person whose resume is being used.
+    8) Format the output in markdown as an email with proper orientation and paragraphing.
+    """
+  
+  inputs:
+    {"resume":"resume", "personal_info":"personal_info"} 
+
+cold_mail_no_personal_info:
+  tool_use_case: "use this tool to write a generic professional and inquisitive cold mail seeking job opportunities without any personal information about the recipient."
+  prompt: |
+    """
+    Using the following resume, write a generic professional and inquisitive cold mail seeking job opportunities. No personal information about the recipient is provided.
+
+    Resume: {resume}
+
+    Instructions:
+    -1) Start with salutaion hi
+    0) write in first person.
+    1) Use the available experience, projects, and skills from the resume to write the cold mail.
+    2) The tone must be professional and inquisitive, seeking job opportunities.
+    3) Don't hallucinate.
+    4) Don't use any external data but only the resume.
+    5) Don't mention any comments and preamble in the response.
+    6) Make sure that the entire message is conveyed in not more than 5 lines.
+    7) End with regards and the name of ther person whose resume is being used.
+    8) Give the output in markdown format in email format with proper orientation and use regards as ending greeeting followed by the name of the person from the resume
+    9)Make sure that mail is properly paragraphed and formatted.
+    """
+  
+  inputs:
+    {"resume":"resume"}
