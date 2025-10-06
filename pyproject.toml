@@ -7,6 +7,7 @@ requires-python = ">=3.12"
 dependencies = [
     "black>=25.9.0",
     "fastmcp>=2.12.4",
+    "langchain>=0.3.27",
     "pandas>=2.3.3",
     "pylint>=3.3.9",
     "yfinance>=0.2.66",

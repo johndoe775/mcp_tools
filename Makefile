@@ -1,6 +1,9 @@
 env:
 	pip install --upgrade pip && pip install uv && uv venv
 
+add:
+	uv add -r requirements.txt
+
 sync:
 	uv sync
 
