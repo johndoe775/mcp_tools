@@ -15,5 +15,8 @@ git:
 format:
 	python3 -m black . --include '\.py'
 
+lint:
+	python3 -m pylint **/*.py
+
 run:
 	uv run main.py

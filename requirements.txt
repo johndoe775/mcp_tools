@@ -2,3 +2,4 @@ fastmcp
 pandas
 yfinance
 black
+pylint
