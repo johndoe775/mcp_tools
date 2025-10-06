@@ -36,15 +36,16 @@ def price_get(ticker: str):
         return {"error": f"No data for ticker {ticker}"}
     return result
 
+
 @mcp.tool
-def prompt_selector(conv:str):
-    """ 
+def prompt_selector(conv: str):
+    """
     based on the input given select the appropriate prompt and return the prompt name
-    
-    
+
+
     """
     try:
-        name=prompt_selection(conv)
+        name = prompt_selection(conv)
         return name
     except Exception as e:
         return e
