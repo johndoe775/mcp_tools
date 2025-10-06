@@ -1,7 +1,7 @@
 env:
 	pip install --upgrade pip && pip install uv && uv venv
 
-install:
+sync:
 	uv sync
 
 git:
