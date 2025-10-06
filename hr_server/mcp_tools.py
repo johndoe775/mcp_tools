@@ -4,7 +4,7 @@ from langchain.prompts import PromptTemplate
 
 
 with open(
-    r"C:\Users\jorda\Downloads\projects\mcp\mcp-hr-work\src\prompts.yaml", "r"
+    "/workspaces/mcp_tools/src/prompts.yaml", "r"
 ) as file:
     data = yaml.safe_load(file)
 
