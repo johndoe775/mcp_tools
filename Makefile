@@ -9,6 +9,7 @@ git:
 	git status
 	git commit -m "recent edits"
 	git push
+	clear
 
 
 format:
