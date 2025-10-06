@@ -4,3 +4,5 @@ yfinance
 black
 pylint
 langchain
+langchain-google-genai
+python-dotenv

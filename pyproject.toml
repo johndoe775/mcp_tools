@@ -8,7 +8,9 @@ dependencies = [
     "black>=25.9.0",
     "fastmcp>=2.12.4",
     "langchain>=0.3.27",
+    "langchain-google-genai>=2.1.12",
     "pandas>=2.3.3",
     "pylint>=3.3.9",
+    "python-dotenv>=1.1.1",
     "yfinance>=0.2.66",
 ]
