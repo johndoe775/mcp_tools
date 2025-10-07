@@ -1,24 +1,16 @@
-from langchain_google_genai import ChatGoogleGenerativeAI
-import os
 from dotenv import load_dotenv
-load_dotenv()
-api_key = os.environ.get("gemini_api_key")
+import os
+from langchain_groq import ChatGroq
 
-llm = ChatGoogleGenerativeAI(
-    model="gemini-pro",
-    temperature=0,
-    max_tokens=None,
-    timeout=None,
-    max_retries=2,
-    api_key=api_key
-)
+load_dotenv()
+api_key = os.environ["groq"]
 
 
 # Initialize LLM
 class LLM:
     def __init__(
         self,
-        model="gemini-pro",
+        model="openai/gpt-oss-120b",
         temperature=0,
         max_tokens=None,
         timeout=None,
@@ -33,4 +25,4 @@ class LLM:
             "max_retries": max_retries,
             "api_key": api_key,
         }
-        self.llm = ChatGoogleGenerativeAI(**self.params)
+        self.llm = ChatGroq(**self.params)
