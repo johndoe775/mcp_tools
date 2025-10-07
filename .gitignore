@@ -12,3 +12,4 @@ wheels/
 # mcp-related folders
 .vscode
 .continue
+.env
