@@ -24,8 +24,7 @@ address data quality , improving logistics performance
 for Amazon Logistics.
 Analyzed large-scale datasets using statistical methods
 to optimize delivery operations and resource planning.
-Built time series models to forecast peak order
-volumes, enabling proactive logistics management.
+Built time series models to forecast peak order volumesenabling proactive logistics management.
 Developed machine learning models to evaluate
 delivery agent performance, driving operational
 efficiency .
@@ -97,27 +96,5 @@ Data Science and Machine Learning
 2024
 Chaitanya Bharathi Institute of T echnology
 B.E(Mechanical)
-2019Graduate Admissions Prediction
-Analyzed graduate admissions data, constructed precise linear
-regression models in Python, and presented actionable insights to
-enhance student success for Jamboree.
-Created Linear regression model and implemented Ridge and Lasso
-regularizations and evaluated model metrics using sklearn stats
-library . Identified significant predictors (e.g., GRE scores, GP A) for
-graduate admissions.
-Developed accurate linear regression models with R2 score
-exceeding 0.8.
-Delivered insights and recommendations for improving application
-profiles.
-LoanT ap Creditworthiness Model
-Developed a Logistic Regression model for LoanT ap, analyzed
-precision vs. recall tradeof fs, and provided actionable insights for
-enhanced loan decisions.
-Created several flags and indicators based on the given features
-and applied a logistic regression model to generate classification
-report, ROC AUC curve, precision-recall curve.
-Revealed key relationships between loan status and borrower
-attributes.
-Achieved high AUC score, indicating strong model performance.
-Provided insights into significant predictors of loan defaults, leading
-to improved creditworthiness assessment.
+2019
+
