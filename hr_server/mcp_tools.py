@@ -3,9 +3,7 @@ from llm import LLM
 from langchain.prompts import PromptTemplate
 
 
-with open(
-    "/workspaces/mcp_tools/src/prompts.yaml", "r"
-) as file:
+with open("/workspaces/mcp_tools/src/prompts.yaml", "r") as file:
     data = yaml.safe_load(file)
 
 

@@ -5,7 +5,6 @@ from utils.finance_tool import get_stock_diffs
 from utils.hr_tool import prompt_selection
 
 
-
 mcp = FastMCP("Multi Tool Server")
 
 
@@ -28,7 +27,7 @@ def price_get(ticker: str):
             return {"error": "ticker (str) is required"}
         result = get_stock_diffs(ticker)
     except Exception as e:
-        
+
         return {"error": str(e)}
 
     if result is None:
@@ -52,4 +51,4 @@ def prompt_selector(conv: str):
 
 if __name__ == "__main__":
     # run over HTTP on port 8000 to match your examples
-    mcp.run(transport="http",port=8000)
+    mcp.run(transport="http", port=8000)
