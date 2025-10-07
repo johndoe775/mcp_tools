@@ -6,3 +6,4 @@ pylint
 langchain
 langchain-google-genai
 python-dotenv
+PyPDF2

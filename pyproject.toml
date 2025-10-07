@@ -11,6 +11,7 @@ dependencies = [
     "langchain-google-genai>=2.1.12",
     "pandas>=2.3.3",
     "pylint>=3.3.9",
+    "pypdf2>=3.0.1",
     "python-dotenv>=1.1.1",
     "yfinance>=0.2.66",
 ]
