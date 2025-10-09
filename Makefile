@@ -5,7 +5,7 @@ add:
 	uv add -r requirements.txt
 
 sync:
-	uv sync
+	uv sync && clear
 
 git:
 	git add .

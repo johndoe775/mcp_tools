@@ -12,7 +12,7 @@ from .state import GraphState
 # pysqldf = lambda q: sqldf(q, globals())
 
 
-@tool
+
 def pandasql_tool(state: GraphState):
     """
     use this tool when the user asks for data analysis using SQL (via pandasql)

@@ -17,7 +17,7 @@ load_dotenv()
 groq = os.environ.get("groq")
 
 
-@tool
+
 def rag_tool(state: GraphState):
     """
     use this tool when there is a pdf involved to answer the question
