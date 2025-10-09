@@ -3,13 +3,12 @@ import os
 import pandas as pd
 import numpy
 from .helpers import LLM
-from langchain_core.prompts import PromptTemplate
+from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from .state import GraphState
 
 
 # pysqldf = lambda q: sqldf(q, globals())
-
 
 
 def pandasql_tool(state: GraphState):

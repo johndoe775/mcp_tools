@@ -10,6 +10,7 @@ dependencies = [
     "langchain>=0.3.27",
     "langchain-google-genai>=2.1.12",
     "langchain-groq>=0.3.8",
+    "langgraph>=0.6.8",
     "pandas>=2.3.3",
     "pylint>=3.3.9",
     "pypdf2>=3.0.1",
