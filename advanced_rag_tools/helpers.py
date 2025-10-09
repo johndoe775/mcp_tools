@@ -7,10 +7,11 @@ load_dotenv()
 api_key = os.environ["groq"]
 
 
+# Initialize LLM
 class LLM:
     def __init__(
         self,
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-120b",
         temperature=0,
         max_tokens=None,
         timeout=None,
