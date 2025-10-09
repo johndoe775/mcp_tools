@@ -13,9 +13,14 @@ mcp = FastMCP("Advanced RAG MCP Server")
 @mcp.tool
 def pandas_sql_tool(state: GraphState):
     """
-    use this tool for generating sql queries on pandas dataframe
 
+    This tool accepts a natural language description of the desired data operation,
+    processes the input entirely within the tool, and generates the corresponding
+    SQL query to be executed against a pandas DataFrame. The natural language input
+    is interpreted to formulate appropriate SELECT, WHERE, GROUP BY, and other SQL
+    clauses, enabling seamless conversion from plain English to executable queries.
     """
+
     try:
         result = pandasql_tool(state)
         state["message"].append("completed pandas visualization")
