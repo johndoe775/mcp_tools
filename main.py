@@ -2,7 +2,7 @@ from fastmcp import FastMCP
 from typing import Optional
 import logging
 from utils.finance_tool import get_stock_diffs
-from utils.hr_tool import prompt_selection
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("mcp_price_tool")
@@ -35,20 +35,6 @@ def price_get(ticker: str):
     if result is None:
         return {"error": f"No data for ticker {ticker}"}
     return result
-
-
-@mcp.tool
-def prompt_selector(conv: str):
-    """
-    based on the input given select the appropriate prompt and return the prompt name
-
-
-    """
-    try:
-        name = prompt_selection(conv)
-        return name
-    except Exception as e:
-        return e
 
 
 if __name__ == "__main__":
