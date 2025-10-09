@@ -8,3 +8,4 @@ langchain-groq
 python-dotenv
 PyPDF2
 langgraph
+pandasql
