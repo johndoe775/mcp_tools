@@ -3,7 +3,6 @@ import os
 import pandas as pd
 import numpy
 from .helpers import LLM
-from langchain.tools import tool
 from langchain_core.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from .state import GraphState
@@ -83,7 +82,7 @@ and wants to answer a specific question using SQL. Use pandasql / SQLite dialect
         return response.strip()
 
     # 1) Load CSV files
-    csv_dir = "/content"  # adjust if needed
+    csv_dir = "/data"  # adjust if needed
     paths, df_infos, global_vars = load_dataframes(csv_dir)
 
     # 2) Optionally, show schemas for sanity check
