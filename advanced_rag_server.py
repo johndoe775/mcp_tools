@@ -23,7 +23,6 @@ def pandas_sql_tool(state: GraphState):
 
     try:
         result = pandasql_tool(state)
-        state["message"].append("completed pandas visualization")
         return state
     except Exception as e:
         state["message"].append(f"error {e}")
