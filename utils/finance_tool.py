@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import yfinance as yf
 from datetime import datetime
 
@@ -72,3 +73,37 @@ def get_stock_diffs(ticker: str):
         result[i] = j
 
     return result
+
+
+def calculate_correlation(ticker1, ticker2):
+    """
+    Calculate the correlation between the given stock ticker and another ticker.
+
+    Parameters
+    ----------
+    ticker1 : str
+        The first stock ticker symbol.
+    ticker2 : str
+        The second stock ticker symbol.
+
+    Returns
+    -------
+    float
+        The correlation between the two tickers.
+    """
+    stock1 = yf.download(ticker1, period="6mo")
+    stock2 = yf.download(ticker2, period="6mo")
+
+    stock1_close = stock1["Close"].pct_change().dropna()
+    stock2_close = stock2["Close"].pct_change().dropna()
+
+    common_dates = stock1_close.index.intersection(stock2_close.index)
+    stock1_close = stock1_close.loc[common_dates]
+    stock2_close = stock2_close.loc[common_dates]
+
+    correlation = (
+        stock1_close.reset_index()
+        .iloc[:, -1]
+        .corr(stock2_close.reset_index().iloc[:, -1])
+    )
+    return correlation

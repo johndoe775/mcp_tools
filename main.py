@@ -1,7 +1,7 @@
 from fastmcp import FastMCP
 from typing import Optional
 import logging
-from utils.finance_tool import get_stock_diffs
+from utils.finance_tool import get_stock_diffs, calculate_correlation
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("mcp_price_tool")
@@ -34,6 +34,36 @@ def price_get(ticker: str):
     if result is None:
         return {"error": f"No data for ticker {ticker}"}
     return result
+
+
+@mcp.tool
+def correlation(ticker1: str, ticker2: str):
+    """
+    MCP tool wrapper for calculate_correlation.
+
+    Args:
+      ticker1: first stock ticker string
+      ticker2: second stock ticker string
+
+    Returns:
+      correlation coefficient between the two tickers OR {"error": "..."}
+    """
+    try:
+        if (
+            not ticker1
+            or not isinstance(ticker1, str)
+            or not ticker2
+            or not isinstance(ticker2, str)
+        ):
+            return {"error": "Both ticker1 (str) and ticker2 (str) are required"}
+        result = calculate_correlation(ticker1, ticker2)
+    except Exception as e:
+        logger.exception("Error in correlation")
+        return {"error": str(e)}
+
+    if result is None:
+        return {"error": f"Failed to calculate correlation for {ticker1} and {ticker2}"}
+    return {"correlation": result}
 
 
 if __name__ == "__main__":
