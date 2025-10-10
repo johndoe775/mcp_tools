@@ -21,8 +21,9 @@ def pandas_sql_tool(state: GraphState):
         result = pandasql_tool(state["inputs"])
 
         return state
-        state["messages"].append(f"error {e}")
+
     except Exception as e:
+        state["messages"].append(f"error {e}")
         return state
 
 
