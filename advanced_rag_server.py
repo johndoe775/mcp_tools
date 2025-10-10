@@ -5,7 +5,7 @@ from advanced_rag_tools.sql_tool import pandasql_tool
 from advanced_rag_tools.state import GraphState
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("mcp_price_tool")
+logger = logging.getLogger("pandas_sql_tool")
 
 mcp = FastMCP("Advanced RAG MCP Server")
 
@@ -25,7 +25,7 @@ def pandas_sql_tool(state: GraphState):
         result = pandasql_tool(state)
         return state
     except Exception as e:
-        state["message"].append(f"error {e}")
+        state["messages"].append(f"error {e}")
         return state
 
 
