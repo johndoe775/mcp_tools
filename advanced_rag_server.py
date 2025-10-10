@@ -13,19 +13,16 @@ mcp = FastMCP("Advanced RAG MCP Server")
 @mcp.tool
 def pandas_sql_tool(state: GraphState):
     """
+    This tool accepts a natural language description of the desired data operation and creates an inputs that shall be used with state to run thr pandasql_tool.
 
-    This tool accepts a natural language description of the desired data operation,
-    processes the input entirely within the tool, and generates the corresponding
-    SQL query to be executed against a pandas DataFrame. The natural language input
-    is interpreted to formulate appropriate SELECT, WHERE, GROUP BY, and other SQL
-    clauses, enabling seamless conversion from plain English to executable queries.
     """
 
     try:
-        result = pandasql_tool(state)
+        result = pandasql_tool(state["inputs"])
+
         return state
-    except Exception as e:
         state["messages"].append(f"error {e}")
+    except Exception as e:
         return state
 
 
