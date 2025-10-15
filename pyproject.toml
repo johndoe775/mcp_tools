@@ -11,6 +11,7 @@ dependencies = [
     "langchain-google-genai>=2.1.12",
     "langchain-groq>=0.3.8",
     "langgraph>=0.6.8",
+    "mcp[cli]>=1.16.0",
     "pandas>=2.3.3",
     "pandasql>=0.7.3",
     "pylint>=3.3.9",

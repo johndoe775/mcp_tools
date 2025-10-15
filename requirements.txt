@@ -10,3 +10,4 @@ PyPDF2
 langgraph
 pandasql
 streamlit
+mcp[cli]
