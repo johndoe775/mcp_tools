@@ -1,5 +1,5 @@
 import yaml
-from llm import LLM
+from hr_server.llm import LLM
 from langchain.prompts import PromptTemplate
 
 

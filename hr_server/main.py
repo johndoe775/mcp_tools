@@ -1,5 +1,5 @@
 from mcp.server.fastmcp.server import FastMCP
-from hr_server.mcp_tools import data, tool_maker
+from mcp_tools import data, tool_maker
 
 
 mcp = FastMCP("HR Server")
@@ -43,7 +43,4 @@ def cold_mail_with_no_info(resume, job_description="", personal_info=""):
 
 
 if __name__ == "__main__":
-    mcp.run(transport="stdio")
-
-
-
+    mcp.run(transport="streamable-http")
