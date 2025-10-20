@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 import yfinance as yf
 from datetime import datetime
+import pandas as pd
+
 
 
 def get_stock_diffs(ticker: str):
@@ -107,3 +109,68 @@ def calculate_correlation(ticker1, ticker2):
         .corr(stock2_close.reset_index().iloc[:, -1])
     )
     return correlation
+
+
+
+def get_alpha_beta(ticker, period='6mo'):
+    """
+    Calculate annualized alpha and beta for a given ticker vs Nifty 50 (^NSEI).
+    period: '6mo' or '1y'.
+    Returns: dict {'alpha': annual_alpha (float), 'beta': beta (float)}.
+    Raises ValueError on bad inputs or insufficient data.
+    """
+    if period not in ('6mo', '1y'):
+        raise ValueError("period must be '6mo' or '1y'")
+
+    index_ticker = "^NSEI"
+    asset = yf.Ticker(ticker)
+    index = yf.Ticker(index_ticker)
+
+    # Use yfinance .history with period string
+    hist_asset = asset.history(period=period)
+    hist_index = index.history(period=period)
+
+    if hist_asset.empty or hist_index.empty:
+        raise ValueError("No historical data returned for asset or index.")
+
+    # Ensure Close column exists; reset index to keep Date if needed
+    if 'Close' not in hist_asset.columns or 'Close' not in hist_index.columns:
+        raise ValueError("Downloaded data missing 'Close' column.")
+
+    # Align by intersection of dates
+    common_dates = hist_asset.index.intersection(hist_index.index)
+    if len(common_dates) < 2:
+        raise ValueError("Not enough overlapping data points between asset and index.")
+
+    asset_prices = hist_asset.loc[common_dates, 'Close']
+    index_prices = hist_index.loc[common_dates, 'Close']
+
+    # Compute daily returns
+    asset_ret = asset_prices.pct_change().dropna()
+    index_ret = index_prices.pct_change().dropna()
+
+    # Re-align after pct_change (drop any mismatched start)
+    common_dates = asset_ret.index.intersection(index_ret.index)
+    asset_ret = asset_ret.loc[common_dates]
+    index_ret = index_ret.loc[common_dates]
+
+    if len(asset_ret) < 10:
+        raise ValueError("Insufficient return observations after alignment (need >=10).")
+
+    # Compute covariance matrix (unbiased sample cov)
+    cov_matrix = np.cov(asset_ret, index_ret, ddof=1)
+    cov = cov_matrix[0, 1]
+    var_index = cov_matrix[1, 1]
+    if var_index == 0:
+        raise ValueError("Index variance is zero; cannot compute beta.")
+
+    beta = float(cov / var_index)
+
+    # Daily alpha (excess return not annualized)
+    daily_alpha = float(asset_ret.mean() - beta * index_ret.mean())
+
+
+    # Annualize alpha assuming 252 trading days
+    annual_alpha = daily_alpha * len(common_dates)
+
+    return {'alpha': annual_alpha, 'beta': beta}

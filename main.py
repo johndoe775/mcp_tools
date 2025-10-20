@@ -1,7 +1,7 @@
 from fastmcp import FastMCP
 from typing import Optional
 import logging
-from utils.finance_tool import get_stock_diffs, calculate_correlation
+from utils.finance_tool import get_stock_diffs, calculate_correlation,get_alpha_beta
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("mcp_price_tool")
@@ -64,6 +64,29 @@ def correlation(ticker1: str, ticker2: str):
     if result is None:
         return {"error": f"Failed to calculate correlation for {ticker1} and {ticker2}"}
     return {"correlation": result}
+
+
+@mcp.tool
+def alpha_beta_get(ticker: str, period: str = '6mo'):
+    """
+    MCP tool: Calculate annualized alpha & beta for a ticker vs Nifty 50 ('^NSEI').
+    Args:
+      ticker: stock ticker string (e.g. 'RELIANCE.NS')
+      period: '6mo' or '1y'
+    Returns:
+      dict: {'alpha': ..., 'beta': ...} or {'error': ...}
+    """
+    try:
+        if not ticker or not isinstance(ticker, str):
+            return {"error": "ticker (str) is required"}
+        if period not in ('6mo', '1y'):
+            return {"error": "period must be '6mo' or '1y'"}
+        result = get_alpha_beta(ticker, period)
+    except Exception as e:
+        return {"error": str(e)}
+    if result is None:
+        return {"error": f"Could not compute alpha/beta for ticker {ticker}"}
+    return result
 
 
 if __name__ == "__main__":
