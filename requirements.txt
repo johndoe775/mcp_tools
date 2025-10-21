@@ -12,3 +12,5 @@ pandasql
 streamlit
 mcp[cli]
 scikit-learn
+matplotlib
+seaborn
