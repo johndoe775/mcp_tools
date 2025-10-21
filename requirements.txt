@@ -11,3 +11,4 @@ langgraph
 pandasql
 streamlit
 mcp[cli]
+scikit-learn

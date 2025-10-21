@@ -17,6 +17,7 @@ dependencies = [
     "pylint>=3.3.9",
     "pypdf2>=3.0.1",
     "python-dotenv>=1.1.1",
+    "scikit-learn>=1.7.2",
     "streamlit>=1.50.0",
     "yfinance>=0.2.66",
 ]

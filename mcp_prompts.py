@@ -44,6 +44,3 @@ def cold_mail_with_no_info(resume, job_description="", personal_info=""):
 
 if __name__ == "__main__":
     mcp.run(transport="stdio")
-
-
-
