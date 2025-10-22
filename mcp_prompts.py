@@ -1,46 +1,106 @@
-from mcp.server.fastmcp.server import FastMCP
-from hr_server.mcp_tools import data, tool_maker
+from fastmcp import FastMCP
 
+mcp = FastMCP(name="JobAutomationServer")
 
-mcp = FastMCP("HR Server")
+@mcp.prompt
+def resume_and_job_decription_rewrite(resume: str, job_description: str) -> str:
+    """
+    Rewrite the following resume to match the job description provided:
+    
+    Resume: {resume}
+    
+    Job Description: {job_description}
+    
+    Instructions:
+    1) Use the available experience, projects, and skills to rewrite the resume.
+    2) Don't Halucinate.
+    3) Don't use any external data but only the resume and job description.
+    4) Don't mention any comments or notes and preamble in the response.
+    5) Give the output in markdown format with proper orientation and formatting.
+    """
+    return f"""
+Rewrite the following resume to match the job description provided:
+    
+Resume: {resume}
+    
+Job Description: {job_description}
+    
+Instructions:
+1) Use the available experience, projects, and skills to rewrite the resume.
+2) Don't Halucinate.
+3) Don't use any external data but only the resume and job description.
+4) Don't mention any comments or notes and preamble in the response.
+5) Give the output in markdown format with proper orientation and formatting.
+"""
 
+@mcp.prompt
+def cold_mail_and_person_info(resume: str, personal_info: str) -> str:
+    """
+    Using the following resume, write a professional and inquisitive cold mail tailored to a personal information of the recruiter, seeking job opportunities.
+    Make sure that the entire message is conveyed in not more than 5 lines:
+    Resume: {resume}
+    Person Information of the recruiter: {personal_info}
+    Instructions:
+    1) Start with the salutation "Hi."
+    2) Write in the first person.
+    3) Utilize only the experience, projects, and skills from the resume to craft the email; do not include any external data or assumptions.
+    4) Maintain a professional and inquisitive tone, expressing interest in job opportunities.
+    5) Do not include any comments or preamble in the response.
+    7) Conclude with "Regards," followed by the name of the person whose resume is being used.
+    8) Format the output in markdown as an email with proper orientation and paragraphing.
+    """
+    return f"""
+Using the following resume, write a professional and inquisitive cold mail tailored to the personal information of the recruiter, seeking job opportunities
+Make sure that the entire message is conveyed in not more than 5 lines:
 
-@mcp.tool()
-def greet(name: str) -> str:
-    """A simple tool that greets a person by name."""
-    return f"Hello, {name}!"
+Resume: {resume}
 
+Person Information of the recruiter: {personal_info}
 
-@mcp.tool()
-def resume_rewrite(resume, job_description, personal_info=""):
-    """use this tool to rewrite resume making it more appealing to the job description"""
-    response = tool_maker(resume, job_description, personal_info).llm_fx(
-        list(data.keys())[0]
-    )
-    return response
+Instructions:
+1) Start with the salutation "Hi."
+2) Write in the first person.
+3) Utilize only the experience, projects, and skills from the resume to craft the email; do not include any external data or assumptions.
+4) Maintain a professional and inquisitive tone, expressing interest in job opportunities.
+5) Do not include any comments or preamble in the response.
+7) Conclude with "Regards," followed by the name of the person whose resume is being used.
+8) Format the output in markdown as an email with proper orientation and paragraphing.
+"""
 
+@mcp.prompt
+def cold_mail_no_personal_info(resume: str) -> str:
+    """
+    Using the following resume, write a generic professional and inquisitive cold mail seeking job opportunities ,Make sure that the entire message is conveyed in not more than 5 lines. No personal information about the recipient is provided.
+    Resume: {resume}
+    Instructions:
+    -1) Start with salutaion hi
+    0) write in first person.
+    1) Use the available experience, projects, and skills from the resume to write the cold mail.
+    2) The tone must be professional and inquisitive, seeking job opportunities.
+    3) Don't hallucinate.
+    4) Don't use any external data but only the resume.
+    5) Don't mention any comments and preamble in the response.
+    7) End with regards and the name of ther person whose resume is being used.
+    8) Give the output in markdown format in email format with proper orientation and use regards as ending greeeting followed by the name of the person from the resume
+    9)Make sure that mail is properly paragraphed and formatted.
+    """
+    return f"""
+Using the following resume, write a generic professional and inquisitive cold mail seeking job opportunities ,Make sure that the entire message is conveyed in not more than 5 lines. No personal information about the recipient is provided.
 
-@mcp.tool()
-def cold_mail_info_present(
-    resume,
-    personal_info,
-    job_description="",
-):
-    """use this tool to write a cold mail to a recruiter when you have personal info about them"""
-    response = tool_maker(resume, job_description, personal_info).llm_fx(
-        list(data.keys())[1]
-    )
-    return response
+Resume: {resume}
 
-
-@mcp.tool()
-def cold_mail_with_no_info(resume, job_description="", personal_info=""):
-    """use this tool to write a cold mail to a recruiter when you have no personal info about them"""
-    response = tool_maker(resume, job_description, personal_info).llm_fx(
-        list(data.keys())[2]
-    )
-    return response
-
+Instructions:
+-1) Start with salutaion hi
+0) write in first person.
+1) Use the available experience, projects, and skills from the resume to write the cold mail.
+2) The tone must be professional and inquisitive, seeking job opportunities.
+3) Don't hallucinate.
+4) Don't use any external data but only the resume.
+5) Don't mention any comments and preamble in the response.
+7) End with regards and the name of ther person whose resume is being used.
+8) Give the output in markdown format in email format with proper orientation and use regards as ending greeeting followed by the name of the person from the resume
+9)Make sure that mail is properly paragraphed and formatted.
+"""
 
 if __name__ == "__main__":
     mcp.run(transport="stdio")
