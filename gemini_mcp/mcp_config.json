@@ -1,0 +1,57 @@
+{
+  "servers": [
+    {
+      "name": "Price MCP Server",
+      "command": ["python", "main.py"],
+      "transport": "stdio",
+      "working_directory": "C:\\Users\\jorda\\Downloads\\my_stuff\\projects\\mcp_tools\\mcp_tools\\gemini_mcp",
+      "tools": [
+        {
+          "name": "price_get",
+          "description": "MCP tool wrapper for calculate_price_changes.",
+          "parameters": [
+            {
+              "name": "ticker",
+              "type": "string",
+              "description": "stock ticker string"
+            }
+          ]
+        },
+        {
+          "name": "correlation",
+          "description": "MCP tool wrapper for calculate_correlation.",
+          "parameters": [
+            {
+              "name": "ticker1",
+              "type": "string",
+              "description": "first stock ticker string"
+            },
+            {
+              "name": "ticker2",
+              "type": "string",
+              "description": "second stock ticker string"
+            }
+          ]
+        },
+        {
+          "name": "alpha_beta_get",
+          "description": "MCP tool: Calculate annualized alpha & beta for a ticker vs Nifty 50 ('^NSEI').",
+          "parameters": [
+            {
+              "name": "ticker",
+              "type": "string",
+              "description": "stock ticker string (e.g. 'RELIANCE.NS')"
+            },
+            {
+              "name": "period",
+              "type": "string",
+              "description": "'6mo' or '1y'",
+              "optional": true,
+              "default": "6mo"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

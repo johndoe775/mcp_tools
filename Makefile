@@ -23,3 +23,4 @@ lint:
 
 run:
 	uv run main.py
+

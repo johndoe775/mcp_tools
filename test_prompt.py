@@ -20,7 +20,7 @@ def make_prompt_function(name, template, description, inputs):
 
 
 # Load YAML
-with open("/workspaces/mcp_tools/src/prompts.yaml") as f:
+with open(r"C:\Users\jorda\Downloads\my_stuff\projects\mcp_tools\mcp_tools\src\prompts.yaml") as f:
     yaml_data = yaml.safe_load(f)
 
 for prompt_key, info in yaml_data.items():
