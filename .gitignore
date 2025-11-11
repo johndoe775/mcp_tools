@@ -12,6 +12,7 @@ wheels/
 # mcp-related folders
 .vscode
 .continue
+.idea
 # Python-generated files
 __pycache__/
 *.py[oc]
