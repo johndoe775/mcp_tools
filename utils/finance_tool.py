@@ -160,6 +160,6 @@ def get_alpha_beta_OLS(ticker, period="6mo"):
     beta = float(model.coef_[0])
     # Intercept is daily alpha (asset return = intercept + beta * index return)
     daily_alpha = float(model.intercept_)
-    annual_alpha = daily_alpha * len(common_dates)
+    annual_alpha =  (1 + daily_alpha) ** len(common_dates) - 1
 
     return {"alpha": annual_alpha, "beta": beta}
