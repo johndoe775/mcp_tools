@@ -76,7 +76,7 @@ def get_stock_diffs(ticker: str):
     return result
 
 
-def calculate_correlation(ticker1, ticker2):
+def calculate_correlation(ticker1, ticker2, period="1y"):
     """
     Calculate the correlation between the given stock ticker and another ticker.
 
@@ -86,14 +86,15 @@ def calculate_correlation(ticker1, ticker2):
         The first stock ticker symbol.
     ticker2 : str
         The second stock ticker symbol.
+    period:str optional
 
     Returns
     -------
     float
         The correlation between the two tickers.
     """
-    stock1 = yf.download(ticker1, period="6mo")
-    stock2 = yf.download(ticker2, period="6mo")
+    stock1 = yf.download(ticker1, period=period)
+    stock2 = yf.download(ticker2, period=period)
 
     stock1_close = stock1["Close"].pct_change().dropna()
     stock2_close = stock2["Close"].pct_change().dropna()

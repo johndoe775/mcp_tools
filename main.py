@@ -37,13 +37,14 @@ def price_get(ticker: str):
 
 
 @mcp.tool
-def correlation(ticker1: str, ticker2: str):
+def correlation(ticker1: str, ticker2: str, period: str = "1y"):
     """
     MCP tool wrapper for calculate_correlation.
 
     Args:
       ticker1: first stock ticker string
       ticker2: second stock ticker string
+      period: str optional
 
     Returns:
       correlation coefficient between the two tickers OR {"error": "..."}

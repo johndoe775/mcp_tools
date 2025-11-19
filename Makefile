@@ -14,6 +14,13 @@ git:
 	git push
 	clear
 
+test:
+		npx @modelcontextprotocol/inspector \
+	  uv \
+	  --C:\Users\jorda\Downloads\my_stuff\projects\mcp_tools\mcp_tools \
+	  run \
+	  main.py
+
 
 format:
 	python3 -m black . --include '\.py'
