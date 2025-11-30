@@ -14,3 +14,5 @@ mcp[cli]
 scikit-learn
 matplotlib
 seaborn
+youtube-transcript-api
+deep-translator

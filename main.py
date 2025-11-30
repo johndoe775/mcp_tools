@@ -2,11 +2,48 @@ from fastmcp import FastMCP
 from typing import Optional
 import logging
 from utils.finance_tool import get_stock_diffs, calculate_correlation, get_alpha_beta_OLS
+from utils.yt_tool import YouTubeTranscriptTranslator
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("mcp_price_tool")
 
 mcp = FastMCP("Price MCP Server")
+
+
+@mcp.tool
+def youtube_translate(url: str, target_lang: str = "en"):
+    """
+    MCP tool wrapper for YouTubeTranscriptTranslator that translates YouTube video transcripts into english.
+
+    Args:
+        url: YouTube video URL (str)
+        target_lang: target translation language (default = "en")
+
+    Returns:
+        dict with keys:
+            - translated_text
+        OR {"error": "..."}
+    """
+    try:
+        if not url or not isinstance(url, str):
+            return {"error": "url (str) is required"}
+
+        translator = YouTubeTranscriptTranslator(url=url, target_lang=target_lang)
+
+        return {
+            "translated_text": translator.result,
+        }
+
+    except Exception as e:
+        logger.exception("Error in youtube_translate")
+        return {"error": str(e)}
+
+
+
+
+
+
+
 
 
 @mcp.tool
